@@ -20,7 +20,10 @@ Feature: Displaying search suggestions in the search bar
     Scenario: Display suggestions when user types a valid query
       When I type "télé" into the search bar
       Then a dropdown with suggestions related to "télé" should appear
-      And each suggestion should highlight the nmatching term
+      And history suggestions should be displayed of the relevant search term
+      
+ 
+     
 
     Scenario: Click on a suggestion to search directly
       When I type "aspirateur" into the search bar
@@ -34,13 +37,15 @@ Feature: Displaying search suggestions in the search bar
       Then I should be redirected to the search results page for the selected suggestion
 
     Scenario: No suggestions found 
-      When I type a random string like "xyzabc123" into the search bar
-      Then the suggestion dropdown should display "Aucune suggestion trouvée"
+      When I type a random string like "abcdqy" into the search bar
+      Then the suggestion dropdown should not suggest any items
+     And If i press "Enter" 
+      Then I should be redirected to the search results page with a message "Aucun produit trouvé pour 'abcdqy  '"
 
-    Scenario: Suggestions disappear when input is cleared
+    Scenario: Suggestions disappear when input is cleared olny the history is displayed
       When I type "ordinateur" into the search bar
       And I clear the input field
-      Then the suggestion dropdown should disappear
+      Then the suggestion dropdown should disappear and show only the recent history of my search 
 
   Rule: Input behavior and performance
 
@@ -50,6 +55,7 @@ Feature: Displaying search suggestions in the search bar
       When I type a second character to form "tv"
       Then suggestions related to "tv" should appear
 
+
     # Negative paths
 
     Scenario: Suggestions fail to load due to server error
@@ -57,8 +63,3 @@ Feature: Displaying search suggestions in the search bar
       When I type "frigo" into the search bar
       Then an error message "Suggestions non disponibles pour le moment" should appear
       And the suggestion dropdown should not open
-
-    Scenario: JavaScript disabled - no suggestions
-      Given JavaScript is disabled in my browser
-      When I type "four" into the search bar
-      Then no suggestion dropdown should appear
