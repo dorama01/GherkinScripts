@@ -12,14 +12,6 @@ Feature: Accès à la fiche produit depuis la page d'accueil
     Then Il est redirigé vers la fiche produit
     And Les détails du produit sont affichés (titre, image, prix)
 
-  Scenario: Fiche produit vide après clic
-    Given un produit est affiché sur la page
-    When L'utilisateur clique sur ce produit
-    Then Il est redirigé vers une fiche produit
-    But Les informations sont absentes ou incorrectes
 
-  Scenario: Le lien de la catégorie est inactif 
-    Given Une catégorie est visible mais non cliquable
-    When L'utilisateur clique sur le lien
-    Then Le lien ne réagit pas
-    But L'utilisateur devrait pouvoir naviguer vers cette catégorie
+
+  

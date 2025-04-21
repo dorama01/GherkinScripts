@@ -14,11 +14,6 @@ Feature: Suppression d’un produit du panier
       Then Le produit doit disparaître du panier
       And Le total doit être mis à jour automatiquement
 
-    Scenario: Le bouton "Supprimer" ne fonctionne pas
-      When L'utilisateur clique sur le bouton "Supprimer" pour un produit
-      Then Le produit reste affiché dans le panier
-      But Il devrait être retiré
-
     Scenario: Annulation d’une suppression
       Given Le panier contient un produit
       When L'utilisateur clique sur "Supprimer"

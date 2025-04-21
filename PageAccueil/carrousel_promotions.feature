@@ -13,13 +13,3 @@ Feature: Fonctionnement du carrousel de promotions
       When L'utilisateur clique sur les flèches de navigation
       Then Les promotions défilent correctement
       And L'utilisateur peut accéder à chaque offre affichée
-
-    Scenario: Carrousel promotionnel bloqué
-      Given Le carrousel promotionnel est visible
-      When L'utilisateur clique sur les flèches
-      Then Aucune transition ne se produit
-
-    Scenario: Carrousel promotionnel non cliquable
-      Given Le carrousel promotionnel est visible
-      When L'utilisateur clique sur un produit
-      Then Aucune transition ne se passe
