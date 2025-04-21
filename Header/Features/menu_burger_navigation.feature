@@ -43,7 +43,6 @@ Examples:
 
 
   Scenario: Automatically show product list when reaching the last filter level
-
       Given the current filter level is the deepest level available
       When I select the last subcategory
       Then the system should automatically display the filtered product list
@@ -53,6 +52,7 @@ Scenario: Stop at any level and display filtered results
   Given I have selected one or more levels in the filter path
   When I trigger the result display for the current selection
   Then I should see a list of products matching the selected filter level
+
 
 
     

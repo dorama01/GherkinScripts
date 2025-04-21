@@ -33,17 +33,4 @@ Feature: Redirection to home page via logo click
       And the homepage URL should be "https://www.cdiscount.com"
       And I should see the main banner or homepage content
 
-    Scenario: Logo is not clickable (negative case)
-      Given the logo is visible
-      But it is not wrapped in a link
-      When I try to click the logo
-      Then nothing should happen
-      And I should still be on the landing page
-
-    Scenario: Broken or incorrect link on logo (negative path)
-      Given the logo is a clickable link
-      But the link points to "https://www.cdiscount.com/404"
-      When I click on the Cdiscount logo
-      Then I should be redirected to a 404 error page
-      And I should not see the homepage banner
-
+  

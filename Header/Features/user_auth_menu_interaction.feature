@@ -19,31 +19,23 @@ Feature: Accessing authentication options from the header
  Scenario: redirect to the login page
     When I click on the "Connectez-vous" button
     Then I should be redirected to the login page
+    And I should see the login form
+    And I shoud be able to login using goodle account or if already registered to log in by email 
+    And I should see a "Continuer" button
 
   Scenario: redirect to the login page from the hover panel
     Given I have hovered over the "Connectez-vous" button
     When I click on the "Identifiez-vous" button in the panel
     Then I should be redirected to the login page
+     And I should see the login form with the cdiscount logo
+    And I should be able to login using goodle account or if already registered to log in by email 
+    And I should see a "Continuer" button
 
-    #negative case 
 
-Scenario: Authentication panel fails to display due to a rendering or network issue
-  When I hover over the "Connectez-vous" button
-  And the authentication panel fails to load due to a system issue
-  Then the panel should not be displayed
-  And I should see no login options or actions
-  And an appropriate fallback message or no action should occur
-   
+  
   # Edge cases
-
-
   Scenario: Toggle panel visibility with hover off
     Given I have hovered and then moved the cursor away from the "Connectez-vous" area
     Then the authentication panel should no longer be visible
-
-  Scenario: Panel remains open when clicking outside
-    Given I have hovered over the "Connectez-vous" button
-    When I click outside the panel
-    Then the authentication panel should remain open
 
 

@@ -16,13 +16,18 @@ Feature: Shopping Cart Access and Interactions from the Header
       When I hover over the "Cart" icon
         And my cart is empty
       Then a preview panel should appear
-      And it should display the message "Panier vide"
+      And it should display the message "Panier vide" with a logo of a shopping cart
       And no products should be shown
+
+      Scenario : add Item to cart
+                 when I add an item to my cart
+                 Then the cart icon should update to show the number of items
 
     Scenario: Display product list when cart has items
       Given My cart contains one or more items
       When I hover over the "Cart" icon
       Then a preview panel should appear
+      And a total price should be displayed
       And all items in the cart should be listed with image, name, quantity, and price
       And controls should be available to update quantity or remove items
 
@@ -49,37 +54,14 @@ Feature: Shopping Cart Access and Interactions from the Header
       When I click on the "Cart" icon
       Then I should be redirected to the cart summary page
       And all current cart items should be displayed
+      And I should be able to remove items or chane the quantity of each item 
+      And I should see a "Choisir ma livraison" button
 
 
-     # Negative Path Scenarios
-
-  Rule: Gracefully handle issues during cart interaction
-
-    Scenario: Failure to load cart panel
-      Given I have items in my cart
-      When I hover over the "Cart" icon
-      And the cart service is temporarily unavailable
-      Then no panel should appear
-      And a generic error message like "Impossible de charger votre panier" should be shown
-      
-
-    Scenario: Failure to update item quantity
-      Given My cart contains at least one item
-      When I attempt to change the item quantity
-      And the update fails due to a server issue
-      Then an error message should be displayed near the item
-      And the quantity should not change
-
-    Scenario: Failure to remove an item
-      Given My cart contains multiple items
-      When I click on "Remove" for an item
-      And the request to remove fails
-      Then the item should remain in the list
-      And an error notification should be shown to the user
-
-    Scenario: Cart page fails to load
-      When I click on the "Cart" icon
-      And the cart page fails to load
-      Then I should see an error message or fallback page
-      And I should be able to retry or go back to the homepage
-
+    Scenario: See recommended content based on the content of you shipping cart 
+         Given I Acceded to the cart page
+      When I scroll down the cart page
+      Then I should see a section with recommended products
+      And these products should be related to the items in my cart
+      And I should be able to add them to my cart
+      And I should see Also items inspired by my own visits
