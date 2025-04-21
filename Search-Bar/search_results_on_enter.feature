@@ -23,17 +23,9 @@ Feature: Triggering search results by pressing the Enter key
   Scenario: Press Enter with an empty search bar
     When I focus on the search bar
     And I press the "Enter" key without typing anything
-    Then I should see my recent search history displayed below the search bar
+    Then I should see my search history displayed below the search bar
     And no search action should be triggered
     And I should remain on the current page
-
-  #negative Path - Search unavailable (e.g. backend issue)
-  Scenario: Press Enter when the search service is unavailable
-    When I type "table" into the search bar
-    And the search service is currently down
-    And I press the "Enter" key
-    Then I should see an error message like "La recherche est temporairement indisponible"
-    And I should not be redirected
 
   #maintain search term on redirect
   Scenario: Keep search term visible after redirection

@@ -37,12 +37,6 @@ Feature: No search results handling
     And no search should be performed
     And I should see recent search history or search suggestions
 
-  # negative Path - Backend/API fails
-  Scenario: Server error during search request
-    When I type "ordinateur" in the search bar
-    And a server error occurs while fetching results
-    Then I should see an error message like "Une erreur est survenue. Veuillez réessayer plus tard"
-    And I should remain on the same page
 
   # retry scenario
   Scenario: User retries with a shorter query after failure

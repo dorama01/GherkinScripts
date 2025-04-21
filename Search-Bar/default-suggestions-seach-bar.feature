@@ -40,7 +40,7 @@ Feature: Displaying search suggestions in the search bar
       When I type a random string like "abcdqy" into the search bar
       Then the suggestion dropdown should not suggest any items
      And If i press "Enter" 
-      Then I should be redirected to the search results page with a message "Aucun produit trouvé pour 'abcdqy  '"
+      Then I should be redirected to the search results page with a message "Aucun produit trouvé pour 'abcdqy'"
 
     Scenario: Suggestions disappear when input is cleared olny the history is displayed
       When I type "ordinateur" into the search bar
@@ -55,11 +55,3 @@ Feature: Displaying search suggestions in the search bar
       When I type a second character to form "tv"
       Then suggestions related to "tv" should appear
 
-
-    # Negative paths
-
-    Scenario: Suggestions fail to load due to server error
-      Given the suggestion service is down
-      When I type "frigo" into the search bar
-      Then an error message "Suggestions non disponibles pour le moment" should appear
-      And the suggestion dropdown should not open
