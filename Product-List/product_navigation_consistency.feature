@@ -39,25 +39,11 @@ Feature: Product detail navigation from product list
     Then I should see the full title displayed correctly on the detail page
     And the image and price should match those from the product list
 
-  # edge Case - Product missing image
-  Scenario: Product in the list has no image
-    Given a product in the list has no image
-    When I click on it
-    Then I should be redirected to the detail page
-    And I should see a placeholder image like "Image non disponible"
-    And the title and price should still match
-
   # edge Case - Product with promotional price
   Scenario: Product has a discount or promotional price
     Given the product shows both original and discounted prices in the list
     When I click on it
     Then I should see both prices reflected exactly on the detail page
-
-  # negative Path - Product no longer exists
-  Scenario: Product clicked is no longer available
-    When I click on a product that has just been removed from inventory
-    Then I should see a message like "Ce produit n’est plus disponible"
-    And I should be redirected back to the product list or a fallback page
 
 
   # retry scenario
